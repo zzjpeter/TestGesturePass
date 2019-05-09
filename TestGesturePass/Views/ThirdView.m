@@ -39,7 +39,7 @@
 
 - (void)addTapGesture{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
-    tap.delegate = self;
+    //tap.delegate = self;
     [self addGestureRecognizer:tap];
 }
 

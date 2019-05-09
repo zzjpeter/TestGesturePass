@@ -10,7 +10,7 @@
 #import "ThirdView.h"
 #import "SecondView.h"
 #import "FirstView.h"
-@interface ViewController ()
+@interface ViewController ()<UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) FirstView *firstView;
 @property (nonatomic,strong) SecondView *secondView;
@@ -24,7 +24,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self buildView];
-    [self test];
+    
+    //[self test];
+    
+    [self test1];
 }
 
 - (void)test {
@@ -35,6 +38,14 @@
     
 }
 
+- (void)test1 {
+    
+    [self.view addSubview:self.firstView];
+    [self.firstView addSubview:self.secondView];
+    [self.secondView addSubview:self.thirdView];
+    
+}
+
 - (void)buildView{
     
     [self addTapGesture];
@@ -42,7 +53,12 @@
 
 - (void)addTapGesture{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
+    //tap.delegate = self;
     [self.view addGestureRecognizer:tap];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
 }
 
 - (void)onTap:(UITapGestureRecognizer *)gesture {
